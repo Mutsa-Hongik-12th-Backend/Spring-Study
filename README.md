@@ -20,4 +20,5 @@
 4. pr 리뷰어로는 `jiseokson`, `soyeoneeii`, `dainnida` 3명을 추가해주세요.
 
 ‼️  `main` 브랜치로의 PR 승인을 과제 확인으로 인정합니다.
+
 ‼️  PR 규칙을 잘 확인해주세요!
