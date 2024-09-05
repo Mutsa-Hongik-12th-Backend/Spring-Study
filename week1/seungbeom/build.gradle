@@ -1,0 +1,29 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3' // 스프링 부트 버전
+	id 'io.spring.dependency-management' version '1.1.6' // 스프링의 의존성을 자동으로 관리
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17) // java 버전 17
+	}
+}
+
+repositories {
+	mavenCentral() // 의존성을 받을 외부 저장소
+}
+
+dependencies { // 프로젝트 개발 시 필요한 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
