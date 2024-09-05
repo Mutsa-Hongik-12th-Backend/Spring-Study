@@ -1,4 +1,4 @@
-package com.mutsa.cheolwoo;
+package com.mutsa.cheolwoo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
