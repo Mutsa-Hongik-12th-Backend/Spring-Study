@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42bf68aa-89aa-46f3-8d67-38924a885148" name="변경" comment="[Remove] 루트 .idea 파일 삭제" />
+    <list default="true" id="42bf68aa-89aa-46f3-8d67-38924a885148" name="변경" comment="[Remove] 루트 .idea 파일 삭제">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,9 +31,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "week1/yunjeong",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/leeyounjeong/Documents/🦁멋사🦁/java/Spring-Study/week1/yunjeong/build.gradle",
+    "last_opened_file_path": "/Users/leeyounjeong/Documents/멋사/java/Spring-Study/week1/yunjeong",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -40,9 +44,27 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="yunjeong" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="yunjeong" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -62,6 +84,7 @@
       <updated>1725463903264</updated>
       <workItem from="1725463904340" duration="97000" />
       <workItem from="1725516272206" duration="1122000" />
+      <workItem from="1725940350858" duration="82000" />
     </task>
     <task id="LOCAL-00001" summary="[Chore] MVC,템플릿엔진 코드 추가">
       <option name="closed" value="true" />
