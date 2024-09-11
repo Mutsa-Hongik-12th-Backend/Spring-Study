@@ -162,6 +162,10 @@ JSON 형식으로 client에게 데이터를 전달하는 방식, 서버끼리 �
 
 <https://amber-humor-4f2.notion.site/WEEK-1-a03c3af4c301426c99a2c1b82d8a5c16?pvs=4>
 
+---------------------
+## 🧡 WEEK1 실습 실행 결과 노션
+<https://amber-humor-4f2.notion.site/Week1-57821ee22aa6416d96d6fa68777befb3?pvs=4>
+
 
 
 
