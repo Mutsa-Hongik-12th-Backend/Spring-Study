@@ -1,10 +1,8 @@
 package mutsa.second.demo.controller;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import mutsa.second.demo.domain.Member;
 import mutsa.second.demo.dto.MemberRequestDTO;
-import mutsa.second.demo.repository.MemberRepository;
 import mutsa.second.demo.service.MemberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

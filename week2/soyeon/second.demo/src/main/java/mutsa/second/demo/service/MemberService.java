@@ -1,6 +1,5 @@
 package mutsa.second.demo.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import mutsa.second.demo.domain.Member;
 import mutsa.second.demo.dto.MemberRequestDTO;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -21,8 +19,8 @@ public class MemberService {
 
     public Member createMember(MemberRequestDTO memberRequestDTO){
         Member member = Member.builder()
-                .name(memberRequestDTO.getName())
-                .email(memberRequestDTO.getEmail())
+                .name(memberRequestDTO.name())
+                .email(memberRequestDTO.email())
                 .build();
 
         Member savedMember = memberRepository.save(member);
