@@ -1,5 +1,6 @@
 package hello.yunakang.controller;
 
+import hello.yunakang.domain.Post; // Post 클래스 import
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,31 +13,10 @@ import java.util.List;
 @RequestMapping("/api/posts")
 public class PostController {
 
-  // 게시글 데이터 구조를 정의하는 내부 클래스
-  static class Post {
-    private int id;
-    private String title;
-    private LocalDateTime createdAt;
-    private String content;
-
-    public Post(int id, String title, LocalDateTime createdAt, String content) {
-      this.id = id;
-      this.title = title;
-      this.createdAt = createdAt;
-      this.content = content;
-    }
-
-    // Getters
-    public int getId() { return id; }
-    public String getTitle() { return title; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public String getContent() { return content; }
-  }
-
-  // 더미 데이터를 저장하는 리스트
+  // 게시글 리스트를 저장할 필드 (더미 데이터)
   private List<Post> posts = new ArrayList<>();
 
-  // 생성자에서 더미 데이터를 초기화
+  // 더미 데이터 초기화
   public PostController() {
     posts.add(new Post(1, "첫 번째 게시글", LocalDateTime.of(2024, 9, 1, 9, 30), "첫 번째 게시글 내용"));
     posts.add(new Post(2, "두 번째 게시글", LocalDateTime.of(2024, 9, 2, 10, 0), "두 번째 게시글 내용"));
@@ -46,9 +26,12 @@ public class PostController {
   // 1. 전체 게시글 리스트 조회
   @GetMapping
   public ResponseEntity<List<Post>> getAllPosts(@RequestParam(value = "order", defaultValue = "latest") String order) {
+    // 최신순 정렬
     if (order.equals("latest")) {
       posts.sort(Comparator.comparing(Post::getCreatedAt).reversed());
-    } else if (order.equals("older")) {
+    }
+    // 오래된 순 정렬
+    else if (order.equals("older")) {
       posts.sort(Comparator.comparing(Post::getCreatedAt));
     }
 
