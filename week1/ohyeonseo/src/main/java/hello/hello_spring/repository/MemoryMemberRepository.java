@@ -1,9 +1,11 @@
 package hello.hello_spring.repository;
 
 import hello.hello_spring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
@@ -28,6 +30,10 @@ public class MemoryMemberRepository implements MemberRepository {
         return store.values().stream()
                 .filter(m -> m.getName().equals(name))
                 .findAny();
+    }
+
+    public void clearStore() {
+        store.clear();
     }
 
     @Override
