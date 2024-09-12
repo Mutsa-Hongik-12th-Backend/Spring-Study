@@ -1,6 +1,7 @@
 package hello.hello_spring.repository;
 
 import hello.hello_spring.domain.Member;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,10 @@ public class MemoryMemberRepositoryTest {
 
     MemberRepository repository = new MemoryMemberRepository();
 
+    @AfterEach
+    public void afterEach() {
+        repository.clearStore();
+    }
     @Test
     public void save() {
         Member member = new Member();
