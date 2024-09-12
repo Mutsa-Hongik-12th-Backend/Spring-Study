@@ -42,10 +42,8 @@ dependencies ⇒ 의존 파일들
   
 <img width="622" alt="1-1" src="https://github.com/user-attachments/assets/d43a1472-4d66-4721-9625-fcdcb1c3eb01">
 
-<img width="627" alt="1-2" src="https://github.com/user-attachments/assets/a5be10f4-3fec-4f07-855b-1ebe4ab6b246">
+<img width="608" alt="1-0" src="https://github.com/user-attachments/assets/970e5396-0d80-4dde-8576-92ec2c0d6d70">
 
-  
-<img width="720" alt="1-3" src="https://github.com/user-attachments/assets/2388f1b7-2099-4a32-b58f-ff36aead2592">
 
 logging ⇒ 현업에서 많이 사용/ logback, slf4j 인터페이스 찾아보면 좋다
 
