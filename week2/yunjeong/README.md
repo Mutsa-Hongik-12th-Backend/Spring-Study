@@ -1,291 +1,306 @@
-# Spring
 
-# **🍃 스프링 부트 VS 스프링**
+## 1️⃣ 회원관리 예제
 
-Spring과 Spring Boot는 모두 스프링 프레임워크를 기반으로 한 자바 웹 개발 프레임워크
+### 1. 비즈니스 요구사항 정리
 
-- Spring은 스프링 프레임워크의 핵심 모듈을 모아서 만든 프레임워크
-    
-    Spring에서는 개발자가 직접 설정 파일을 작성하여 스프링 컨테이너를 구성하고, 필요한 빈 객체를 등록하고, 빈 객체 간의 의존성을 설정해야 함
-    
-- Spring Boot는 스프링 프레임워크를 보다 쉽게 사용할 수 있도록 만든 프레임워크
-    
-    개발자가 보다 쉽게 스프링을 사용할 수 있도록 설정과 의존성 처리 등을 자동으로 처리함
-    
-- 스프링(Spring)은 프레임워크이며, 스프링 부트(Spring Boot)는 스프링 프레임워크를 기반으로 한 도구
-- 스프링은 설정 파일을 작성해야 하지만, 스프링 부트는 자동 설정을 제공하여 간편하게 개발할 수 있음. (또한, 스프링 부트는 내장 서버를 제공하여 쉽게 웹 애플리케이션을 실행할 수도 있음)
-- Spring은 스프링 프레임워크를 보다 세밀하게 제어하고자 하는 경우에, Spring Boot는 빠르고 간단하게 스프링 애플리케이션을 개발하고자 하는 경우에 사용함
+- 데이터 : 회원ID, 이름
+- 기능 : 화원등록, 조회
 
-# **🍃 프로젝트 환경설정**
+일반적인 웹 애플리케이션 계층 구조
 
-## 1️⃣ 프로젝트 생성
+![image.png](README/image.png)
 
-- java 17 설치 (JDK도 동일하게 17버전 설치)
-- IntelliJ 설치
-- 스프링 부트 스타터 사이트 이동해서 스프링 프로젝트 생성
-    - https://start.spring.io/
-    
-    ![image.png](README/image.png)
-    
-    기본적인 dependencies인 Spring Web과 Thymeleaf도 같이 추가하여 생성한다.
-    
-    ```java
-    plugins {
-    	id 'java'
-    	id 'org.springframework.boot' version '3.3.3'
-    	id 'io.spring.dependency-management' version '1.1.6'
-    }
-    
-    group = 'hello'
-    version = '0.0.1-SNAPSHOT'
-    
-    java {
-    	toolchain {
-    		languageVersion = JavaLanguageVersion.of(17)
-    	}
-    }
-    
-    repositories {
-    	mavenCentral()
-    }
-    
-    dependencies {
-    	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    	implementation 'org.springframework.boot:spring-boot-starter-web'
-    	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    }
-    
-    tasks.named('test') {
-    	useJUnitPlatform()
-    }
-    
-    ```
-    
-
----
-
-## 2️⃣ 프로젝트 라이브러리
-
-- 프로젝트 폴더 내부가 main/test 폴더로 구분되어있음 ⇒ 테스트 코드가 중요함
-- resources : 실제 자바 파일을 제외한 설정파일들
-- build.gradle의 역할 : 버전 설정하고 라이브러리 당겨오는 역할
-- 경로에 이모지 들어가면 안됨.. : Could not set process working directory to '/Users/leeyounjeong/Documents/🦁멋사🦁/java/Spring-Study/week1/yunjeong/hello-spring': could not setcwd() (errno 2: No such file or directory)
-
-다음과 같은 로그가 뜬다면, [http://localhost:8080/](http://localhost:8080/) 에서 서버가 실행되고 있다!
-
-`Tomcat started on port 8080 (http) with context path '/’` 
+**컨트롤러**: 웹 MVC의 컨트롤러 역할
+**서비스**: 핵심 비즈니스 로직 구현
+**리포지토리**: 데이터베이스에 접근, 도메인 객체를 DB에 저장하고 관리
+**도메인**: 비즈니스 도메인 객체, 예) 회원, 주문, 쿠폰 등등 주로 데이터베이스에 저장하고 관리됨
 
 ![image.png](README/image%201.png)
 
-- Gradle은 의존관계가 있는 라이브러리를 함께 다운로드 하는 역할
-    
-     ex) spring-boot-starter-web 를 실행하려면 톰캣 라이브러리와 웹MVC 라이브러리가 필요
-    
-    ⇒ gradle이 spring-boot-starter-web를 다운로드할 때 필요한 라이브러리까지 다 다운로드 함
-    
+데이터 저장소가 선정되지 않아서 우선 메모리 기반의 데이터 저장소 사용
 
-![image.png](Spring%20faaf1dad8ad643b5b1794fe29021e930/image%202.png)
-
-spring-boot-starter-web 라이브러리로 통해 스프링부트와 로깅 라이브러리 다 다운로드 받아짐
-
----
-
-## 3️⃣ View 환경설정
+### 2. 회원 도메인과 리포지토리 만들기
 
 ```java
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>static content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-정적 컨텐츠 입니다.
-</body>
-</html>
-```
+public class MemoryMemberRepository implements MemberRepository {
 
-![image.png](README/image%203.png)
+    private static Map<Long, Member> store = new HashMap<>();
+    private static Long sequence = 0L;
 
-- 스프링 부트가 제공하는 WelcomePage 기능
-    
-    `resources/static/index.html` 을 만들면 루트 경로에 띄울 정적 페이지 완성
-    
-    ⇒ 먼저 정적에서 index.html 파일을 찾고 못찾으면 index 탬플릿 찾는 식으로 진행됨
-    
+    @Override
+    public Member save(Member member) {
+        member.setId(++sequence);
+        store.put(member.getId(), member);
+        return member;
+    }
 
-더 자세한 내용은 [spring.io](http://spring.io)에들어가서 learn → spring 들어가서 문서 확인 https://docs.spring.io/spring-boot/index.html
+    // null값 때문에 optional로 감싸야 한다
+    @Override
+    public Optional<Member> findById(Long id) {
+        return Optional.ofNullable(store.get(id));
+    }
 
----
+    @Override
+    public Optional<Member> findByName(String name) {
+        return store.values().stream()
+                    .filter(member -> member.getName().equals(name))
+                    .findAny();
+    }
 
-## 4️⃣ thymeleaf 템플릿 엔진
-
-- 화면을 `동적`으로 만들려면 템플릿 엔진을 사용해야 함.
-미리 정의된 템플릿(Template)을 만들고, 동적으로 html 페이지를 만들어서 클라이언트에 전달하는 방식.
-요청이 올 때마다 `서버에서 새로운 html 페이지를 만들어 주기 때문에 '서버 사이드 렌더링' 방식`이라고 함.
-- 타임리프의 가장 큰 장점은 'natural templates'임.
-    
-    타임리프를 사용할 때 타임리프 문법을 포함하고 있는 html 파일을 서버 사이드 렌더링을 하지 않고 브라우저에 띄워도 정상적인 화면을 볼 수 있음. 타임리프의 확장자명은 .html 이며, 타임리프의 문법은 html 태그 안쪽에 속성으로 사용됨.
-    
-    ```java
-    <html xmlns:th="http://www.thymeleaf.org">
-    <body>
-    <p th:text="'hello ' + ${name}">hello! empty</p>
-    </body>
-    </html>
-    ```
-    
-
-![image.png](README/image%204.png)
-
-**[동작 환경 그림]**
-
-![image.png](README/image%205.png)
-
-- spring boot는 내장된 톰켓 서버가 있음
-- 톰켓 서버가 /hello를 보고 스프링 컨테이터에 물어봄
-- return을 hello로 하면, resources/templete/에서 hello를 찾음 (viewResolver 역할)
-- 그리고 resources/templete/에 있다면 동적 페이지를 thymeleaf 템플릿 엔진에서 처리함
-
----
-
-## 5️⃣ 빌드하고 실행하기
-
-./gradlew build
-
-하고 build/libs 파일 들어가면 파일이 완성되어있음
-
-java -jar 명령어로 실행
-
----
-
-# **🍃 스프링 웹 개발 기초**
-
-1. 정적 컨텐츠
-    
-    서버에서 하는 것 없이 그대로 웹 브라우저에 화면을 띄우는것
-    
-2. MVC와 템플릿엔진
-    
-    html을 그냥 주는게 아니라, 서버에서 동적으로 바꿔서 주는 것
-    
-    그걸 하기 위해서 컨트롤러, 모델, 템플릿엔진이 필요함
-    
-    정적 컨텐츠와 차이 : 정적 컨텐츠는 그대로 전달, 얘는 html을 좀 바꿔서 함
-    
-3. API
-    
-    Json이라는 데이터 포멧으로 클라이언트한테 데이터 전달
-    
-    서버끼리 통신할 때도 api 통신을 사용하기도 함
-    
-
-## 1️⃣ 정적 컨텐츠
-
-스프링부트는 정적 컨텐츠를 기본으로 제공함
-
-/static 폴더에서 찾아서 제공
-
-ex) /static/hello-static.html으로 만들면
-
-[localhost:8080/hello-static.html로](http://localhost:8080/hello-static.html로) 들어갔을 때 바로 보임
-
-![image.png](README/image%206.png)
-
-내장 톰켓에서 스프링부트에 보냄
-
-컨테이너에 **관련 컨트롤러가 있는지 먼저 찾아봄 → 그다음 없으면 resource에서 관련 html이 있는 지 찾아봄**
-
----
-
-## **2️⃣ MVC와 템플릿엔진**
-
-MVC : model, view, controller
-
-view → 화면을 그리는데, 집중해야함
-
-model, controller → 내부 로직을 처리하는 데 집중해야함
-
-```java
-@Controller
- public class HelloController {
-     @GetMapping("hello-mvc")
-     public String helloMvc(@RequestParam("name") String name, Model model) {
-         model.addAttribute("name", name);
-         return "hello-template";
-     }
+    @Override
+    public List<Member> findAll() {
+        return new ArrayList<>(store.values());
+    }
 }
 ```
 
-```html
-<html xmlns:th="http://www.thymeleaf.org">
- <body>
- <p th:text="'hello ' + ${name}">hello! empty</p>
- </body>
-</html>
+`@Override` 어노테이션
+
+### 3. 회원 리포지토리 테스트 케이스 작성
+
+개발한 기능을 테스트할 때 자바의 main 메서드를 실행하기
+
+- 방법을 준비하는 데 시간이 많이 걸림
+- 반복적인 테스트를 행하기 어려움
+
+⇒ 테스트 케이스로 해결!
+
+`Assertions.assertEquals(a, b)` : 테스트에서 제공함 (터미널에 값이 나오진 않지만 실행이 성공적으로 됐는지 확인가능하다)
+
+`Assertions.assertThat(a).isEqualTo(b)` : a가 b랑 동일한지 비교
+
+*shift + F6 - 변수명 한번에 바꾸기
+
+- 테스트는 순서를 보장하지 않음
+    - 테스트가 끝날 때마다 메모리가 지워지도록 만들어야함
+    - ⇒ 서로 의존관계가 되지 않게 설계해야 함
+    - `store.clear()` 추가해야함
+
+```java
+ @Test
+    public void save() {
+        //given
+        Member member = new Member();
+        member.setName("spring");
+        //when
+        repository.save(member);
+        //then
+        Member result = repository.findById(member.getId()).get();
+        assertThat(result).isEqualTo(member);
+    }
 ```
 
-thymeleaf.org의 장점 → html을 그대로 쓰고 서버 없이 열어봐도 볼 수 있음
-`<p th:text="'hello ' + ${name}">hello! empty</p>`
+`Member result = repository.findById(member.getId()).get();` 에서 '`isPresent()' 검사가 없는 'Optional. get()'` 라는 경고창
 
-껍데기만 보는 경우 - > hello! empty가 뜸
+: optional이 빈값일 때의 가능성을 고려하지 않아서 생기는 경고창
+
+```java
+Member result = repository.findById(member.getId()).isPresent() ? 
+                        repository.findById(member.getId()).get() : null;
+```
+
+`isPresent()` 을 포함하여 빈값일 때의 코드도 추가함
+
+![image.png](README/image%202.png)
+
+테스트를 실행했을 때 다 통과하는 것을 볼 수 있음
+
+테스트를 먼저 만들고 그 다음에 설계를 하는 것 ⇒ 테스트 주도 개발(TDD)
+
+### 4. 회원 서비스 개발
+
+```java
+//같은 이름이 있는 중복 회원x
+        memberRepository.findByName(member.getName())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
+```
+
+`memberRepository.findByName` 가 차피 optional이여서 바로 ifPresent로 사용가능
+
+`validateDuplicateMember(member);` 로 메서드로 뽑아서 리펙토링
+
+*control + t - 리펙토링 관련
+
+서비스에서는 비즈니스에 의존하여 설계함 → 용어 선택도 비즈니스적이게 작성
+
+```java
+public class MemberService {
+
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
+
+    /**
+     *  회원가입
+     */
+    public Long join(Member member) {
+
+        //같은 이름이 있는 중복 회원x
+        validateDuplicateMember(member); // 중복회원 검증
+        memberRepository.save(member);
+        return member.getId();
+    }
+
+    private void validateDuplicateMember(Member member) {
+        memberRepository.findByName(member.getName())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
+    }
+
+    /**
+     *  전체 회원 조회
+     */
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    /**
+     *   회원 조회
+     */
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
+    }
+
+}
+```
+
+### 5. 회원 서비스 테스트
+
+*command+shift+t - 새로운 테스트 생성 단축기
+
+```java
+@Test
+    void join() {
+        //given
+        
+        //when
+        
+        //then
+    }
+```
+
+```java
+//외부에서 memberRepository를 바꾸도록 변경함
+    public MemberService(MemberRepository memberRepository) {
+
+        this.memberRepository = memberRepository;
+    }
+```
+
+```java
+ 		MemberService memberService;
+    MemoryMemberRepository memberRepository;
+
+    @BeforeEach
+    public void beforeEach() {
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository);
+    }
+```
+
+memberService에서 직접 넣지 않고 외부에서 접근할 수 있도록 함
+
+<aside>
+🌱 DI (**Dependency Injection) : 의존성 주입**
+
+- 한 객체가 어떤 객체(구체 클래스)에 의존할 것인지는 별도의 관심사이다. Spring은 의존성 주입을 도와주는 DI 컨테이너로써, 강하게 결합된 클래스들을 분리하고, 애플리케이션 실행 시점에 객체 간의 관계를 결정해 줌으로써 결합도를 낮추고 유연성을 확보해준다
+- 외부에서 객체 간의 관계(의존성)를 결정해 주는데 즉, 객체를 직접 생성하는 것이 아니라 외부에서 생성 후 주입시켜 주는 방식
+
+</aside>
+
+1.  필드 주입
+2. setter 주입
+    - public하게 노출되어 있어 바뀔 위험이 있음
+3. 생성자 주입
+    - 스프링 컨테이너에 올라가고 조립시점에 딱 올라가고 더이상 변경못하게 막는다
+    
+    ⇒ 결론 : 생성자 주입이 좋다~
+    
+    의존관계가 실행중에 동적으 로 변하는 경우는 거의 없으므로 생성자 주입을 권장
+    
 
 ---
 
-## **3️⃣ API**
+## 2️⃣ 스프링 빈과 의존관계
+
+### 1. 컴포넌트 스캔과 자동 의존관계 설정
+
+멤버 컨트롤러가 멤버 서비스에 의존하도록 만들기
+
+컨트롤러 → 스프링 컨테이너가 관리
 
 ```java
- @GetMapping("hello-string")
-    @ResponseBody
-    public String helloString(@RequestParam("name") String name){
-        return "hello " + name; //뷰 없이 이 문자 그대로 클라이언트에게 감
+@Autowired // 스프링 컨테이너에서 컨트롤러를 가져오는 애노테이션
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 ```
 
-- @ResponseBody 를 사용하면 뷰 리졸버를 사용하지 않음
-- 대신에 HTTP의 BODY에 문자 내용을 직접 반환
+member 클래스는 순수한 자바 클래스이기 때문에 스프링에서 알 수 없음
 
-![image.png](README/image%207.png)
+@Service 와 @Repository 를 추가하여 해결
 
-→ 웹에 띄어진 코드를 봤을 때 html 화면이 가는게 아니라 return 문장이 그대로 출력된 것을 볼 수 있음
+<aside>
+🌱 **스프링 빈을 등록하는 2가지 방법**
 
-![image.png](README/image%208.png)
-
-```java
-@GetMapping("hello-api")
-    @ResponseBody
-    public Hello helloApi(@RequestParam("name") String name) {
-        Hello hello = new Hello();
-        hello.setName(name);
-        return hello;
-    }
-
-    static class Hello {
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
+```
+빈(Bean)은 스프링 컨테이너에 의해 관리되는 재사용 가능한 소프트웨어 컴포넌트이다.즉, 스프링 컨테이너가 관리하는 자바 객체를 뜻하며, 하나 이상의 빈(Bean)을 관리한다.
 ```
 
-- getter, setter → 자바 빈 표준 방식
-    - private는 외부에서 접근 못함
-    - 접근할 수 있도록 getter, setter 사용
+- 컴포넌트 스캔과 자동 의존관계 설정
+    - @Service 도 컴포넌트 스캔임
+        
+        → 안에 열어보면 @Component 붙어있음
+        
+- 자바 코드로 직접 스프링 빈 등록하기
+</aside>
 
-![image.png](README/image%209.png)
+- `@Component` 애노테이션이 있으면 스프링 빈으로 자동 등록된다.
+- `@Controller` 컨트롤러가 스프링 빈으로 자동 등록된 이유도 컴포넌트 스캔 때문이다.
+- `@Component` 를 포함하는 다음 애노테이션도 스프링 빈으로 자동 등록된다.
+    - `@Controller`
+    - `@Service`
+    - `@Repository`
+- `@Autowired` 는 각 컨트롤러 서비스, 레포지토리를 연결하는 선(?)
+- 패키지 내에 있는, 또는 포함한 파일들만 스프링이 보고 컴포넌트 스캔이 적용된다 `package hello.hello_spring.*;`
 
-- `@ResponseBody` 를 사용
-- HTTP의 BODY에 문자 내용을 직접 반환
-- viewResolver 대신에 HttpMessageConverter 가 동작
-- 기본 문자처리: `StringHttpMessageConverter`
-- 기본 객체처리: `MappingJackson2HttpMessageConverter`
+![image.png](README/image%203.png)
 
-responsebody 있으면 http 응답에 그대로 넘기도록 동작함
+`스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤으로 등록한다`
 
-근데 만약 객체를 준다면, json 형태로 데이터를 만들어서 http 응답에 반환함
+싱글톤 : 유일하게 하나만 등록하여 공유한다 ⇒. 즉, 같은 스프링 빈이면 같은 인스턴스
+
+### 2. 자바코드로 직접 스프링 빈 등록하기
+
+```java
+package hello.hellospring;
+ import hello.hellospring.repository.MemberRepository;
+ import hello.hellospring.repository.MemoryMemberRepository;
+ import hello.hellospring.service.MemberService;
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
+ @Configuration
+ public class SpringConfig {
+     @Bean
+     public MemberService memberService() {
+         return new MemberService(memberRepository());
+     }
+     @Bean
+     public MemberRepository memberRepository() {
+         return new MemoryMemberRepository();
+     }
+}
+
+```
+
+configuration을 스프링이 읽고 아래 bean에 있는 내용을 등록한다
+
+memberservice와 memberrepository를 스프링 빈에 올리고
+
+컨트롤러에 있는 해당 스프링 빈에 넣어준다
+
+|  | 장점 | 단점 |
+| --- | --- | --- |
+| **컴포넌트 스캔** | 동적인 빈 등록을 자동적으로 등록할 수 있게 하기 위함 | 레포지토리 변경이 있을 때 여러 파일의 애노테이션을 바꿔야 함, 등록할 스프링 빈 개수가 증가할 수록 설정 정보는 커지게 되고 설정 정보를 누락하는 문제 |
+| **자바 코드** | 설정 파일만 바꾸면 된다 |  |
