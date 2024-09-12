@@ -34,24 +34,18 @@ hello-spring
 
   
 
-![dependencies ⇒ 의존 파일들](README/image@1-0.png)
+<img width="795" alt="image" src="https://github.com/user-attachments/assets/8dd7e879-f96b-4ca3-b2c9-203c44f15f3d">
 
  
 dependencies ⇒ 의존 파일들
 
   
+<img width="622" alt="1-1" src="https://github.com/user-attachments/assets/d43a1472-4d66-4721-9625-fcdcb1c3eb01">
 
-![스크린샷 2024-09-12 오전 1.43.45.png](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_1.43.45.png)
-
-  
-
-![스크린샷 2024-09-12 오전 1.48.26.png](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_1.48.26.png)
+<img width="627" alt="1-2" src="https://github.com/user-attachments/assets/a5be10f4-3fec-4f07-855b-1ebe4ab6b246">
 
   
-
-![logging ⇒ 현업에서 많이 사용/ logback, slf4j 인터페이스 찾아보면 좋다 ](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/image%201.png)
-
-  
+<img width="720" alt="1-3" src="https://github.com/user-attachments/assets/2388f1b7-2099-4a32-b58f-ff36aead2592">
 
 logging ⇒ 현업에서 많이 사용/ logback, slf4j 인터페이스 찾아보면 좋다
 
@@ -103,9 +97,7 @@ welcome 페이지 만들기 (정적 페이지)
 
   
 
-![정적 컨텐츠 - 아래에서 자세히 볼 것](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_2.29.46.png)
-
-  
+<img width="699" alt="1-4" src="https://github.com/user-attachments/assets/0ae0b368-96bd-4680-bc81-46fec04da4cb">
 
 정적 컨텐츠 - 아래에서 자세히 볼 것
 
@@ -117,7 +109,6 @@ welcome 페이지 만들기 (정적 페이지)
 
 ***src/main/java/ . . /controller :** controller코드 구현*
 
-  
 
 ```java
 
@@ -140,11 +131,8 @@ return  "hello";
 
 `<p th:text="'hello ' + ${data}">hello! empty</p>` 에서 `{data}` ← controller에 있던 값
 
-  
+<img width="627" alt="1-2" src="https://github.com/user-attachments/assets/cb451b5b-6422-4f09-aedc-429b060cf08e">
 
-![동적 컨텐츠 / 아래 섹션에서 자세히 볼 것](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_2.03.43.png)
-
-  
 
 동적 컨텐츠 / 아래 섹션에서 자세히 볼 것
 
@@ -200,9 +188,7 @@ src/main/resources/static에 `{파일명}.html`생성
 
 [localhost:8080/{파일명.html}](http://localhost:8080/{파일명.html}) 접속
 
-  
-
-![스크린샷 2024-09-12 오전 2.52.10.png](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_2.52.10.png)
+<img width="699" alt="1-4" src="https://github.com/user-attachments/assets/b6c4cf50-5138-4720-a9a8-e56bf8ef3f46">
 
   
 
@@ -224,11 +210,8 @@ controller, model : 내부적 기능
 
 - [localhost:8080/**hello-mvc?name=spring1**](http://localhost:8080/hello-mvc?name=spring1) 파라미터 넘겨주기 방식
 
-  
+<img width="577" alt="image" src="https://github.com/user-attachments/assets/6e10c7dc-51c6-44ac-94d1-275bac8da1f7">
 
-![정적과 달리 HTML을 변환해줌(랜더링)](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/image%202.png)
-
-  
 
 정적과 달리 HTML을 변환해줌(랜더링)
 
@@ -259,17 +242,10 @@ return  "hello " + name;
 
   
 
-`@ResponseBody` http의 body에 데이터 직접 넣겠다 . ⇒ hello + {name} 이 그대로 반환
+`@ResponseBody` http의 body에 데이터 직접 넣겠다 . ⇒ hello + {name} 이 그대로 반
 
-  
+<img width="445" alt="image" src="https://github.com/user-attachments/assets/6d83f8f3-e55a-47b4-885f-5f6c2cac183e">
 
-![스크린샷 2024-09-12 오전 3.44.22.png](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_3.44.22.png)
-
-  
-
-![스크린샷 2024-09-12 오전 3.44.33.png](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB_3.44.33.png)
-
-  
 
 → 값을 그대로 http로 넣어줌
 
@@ -277,9 +253,8 @@ return  "hello " + name;
 
 ii. 객체를 반환할때
 
-  
+<img width="526" alt="image 3" src="https://github.com/user-attachments/assets/85348798-01c7-4dbe-98b8-d5bebc3e9efc">
 
-![hello 객체 반환!](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/image%203.png)
 
   
 
@@ -289,17 +264,12 @@ hello 객체 반환!
 
 command+shitft+enter : 완성해줌
 
-  
+<img width="562" alt="image" src="https://github.com/user-attachments/assets/b65df402-4ca9-423c-8130-caebd70c02b8">
 
-![JSON 형식](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_1.59.57.png)
-
-  
 
 JSON 형식
 
-  
-
-![ResponseBody사용](spring%20intro%2039bb43c6a3804f1ca0cdb2f2d685f2c3/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2024-09-12_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_2.01.31.png)
+<img width="703" alt="1-8" src="https://github.com/user-attachments/assets/b16d612e-9ac8-4307-af54-f2b795e8fdd6">
 
   
 
