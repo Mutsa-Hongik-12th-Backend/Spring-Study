@@ -220,3 +220,5 @@ GET /members
 GET /members/1
 
 ![image.png](README/image%205.png)
+
+노션 링크 : https://2youn.notion.site/week3-105b1b16b9018096906ce3eba7c9f280?pvs=4
