@@ -14,35 +14,35 @@
 
 코드 작성 후 main 클래스 실행으로 로컬 서버 실행
 
-![image.png](image.png)
+![image.png](images/image.png)
 
-![image.png](image%201.png)
+![image.png](images/image%201.png)
 
 POSTMAN으로 코드 테스트(url 매핑 방식은 컨트롤러 파일에 작성되어 있음)
 
 1. 멤버 생성
 
-   ![image.png](image%202.png)
+   ![image.png](images/image%202.png)
 
 2. 멤버 전체 조회
 
-   ![image.png](image%203.png)
+   ![image.png](images/image%203.png)
 
 3. 특정 멤버 조회
 
-   ![image.png](image%204.png)
+   ![image.png](images/image%204.png)
 
 
 H2 데이터베이스 연결이 잘 되어있는지 확인
 
 1. h2 디비 최초 연결
 
-![image.png](image%205.png)
+![image.png](images/image%205.png)
 
 1. SELECT문으로 포스트맨으로 생성한 멤버들 조회
 
-![image.png](image%206.png)
+![image.png](images/image%206.png)
 
 1. 특정 멤버 조회
 
-![image.png](image%207.png)
+![image.png](images/image%207.png)
