@@ -1,8 +1,3 @@
-# week3 과제
-
-Date: 2024년 9월 19일
-Status: Not started
-
 ## 1️⃣ 진행과정에서 이해한 내용 정리
 
 ### ERROR : 데이터베이스 오류
